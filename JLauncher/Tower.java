@@ -3,19 +3,32 @@ package JLauncher;
 import java.util.LinkedList;
 
 public abstract class Tower {
-  private LinkedList<Flyable> observers;
+
+  private LinkedList<Flyable> observers = new LinkedList<Flyable>();
 
   public void register(Flyable flyable) {
-  	observers.add(flyable);
+  	this.observers.add(flyable);
+    Manager.writeMessage("Tower says: "
+      + flyable.getInfo()
+      + " registered to weather tower.\n");
   }
 
   public void unregister(Flyable flyable) {
-  	observers.remove(flyable);
+  	this.observers.remove(flyable);
+    Manager.writeMessage("Tower says: "
+      + flyable.getInfo()
+      + " unregistered from weather tower.\n");
   }
 
   protected void conditionsChanged() {
-  	for (Flyable tmp : observers) {
-  	  tmp.updateConditions();
-  	}
+    for (int i = 0; i < observers.size();)
+    {
+      Flyable tmp = observers.get(i);
+      tmp.updateConditions();
+
+      if (tmp == observers.get(i)) {
+        i++;
+      }
+    }
   }
 }
