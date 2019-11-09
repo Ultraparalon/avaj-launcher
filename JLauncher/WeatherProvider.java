@@ -1,7 +1,8 @@
 package JLauncher;
 
 public class WeatherProvider {
-  private static WeatherProvider wp;
+
+  private static WeatherProvider m_wp;
   private static String weather[] = {
   	"RAIN", "FOG", "SUN", "SNOW"
   };
@@ -9,10 +10,10 @@ public class WeatherProvider {
   private WeatherProvider() {}
 
   public static WeatherProvider getProvider() {
-  	if (wp == null) {
-  		wp = new WeatherProvider();
+  	if (m_wp == null) {
+  		m_wp = new WeatherProvider();
   	}
-  	return wp;
+  	return m_wp;
   }
 
   public String getCurrentWeather(Coordinates coords) {
@@ -21,6 +22,7 @@ public class WeatherProvider {
       + coords.getHeight()) % weather.length;
 
     return weather[type];
-    // there should be weather algorythm
+    // there should be genius weather algorythm
   }
+
 }

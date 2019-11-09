@@ -9,4 +9,5 @@ public class WeatherTower extends Tower {
   void changeWeather() {
   	super.conditionsChanged();
   }
+  
 }

@@ -1,6 +1,7 @@
 package JLauncher;
 
 public abstract class Aircraft {
+
   protected long m_id;
   protected String m_name;
   protected Coordinates m_coordinates;
@@ -15,4 +16,5 @@ public abstract class Aircraft {
   private long nextId() {
   	return m_idCounter++;
   }
+  
 }

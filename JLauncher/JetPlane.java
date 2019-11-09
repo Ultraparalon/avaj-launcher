@@ -16,46 +16,35 @@ class JetPlane extends Aircraft implements Flyable {
   }
 
   public void updateConditions() {
-    Coordinates tmp = new Coordinates(0, 0, 0);
     switch (m_wt.getWeather(this.m_coordinates))
     {
       case ("SUN"):
-        tmp = new Coordinates(m_coordinates.getLongtitude(),
-          m_coordinates.getLatitude() + 10,
-          m_coordinates.getHeight() + 2);
-          Manager.writeMessage(INFO + ": I see god rays.\n");
+        this.m_coordinates.moveCoordinates(0, 10, 2);
+        Manager.writeMessage(INFO + ": I see god rays.\n");
         break;
       case ("RAIN"):
-        tmp = new Coordinates(m_coordinates.getLongtitude(),
-          m_coordinates.getLatitude() + 5,
-          m_coordinates.getHeight());
-          Manager.writeMessage(INFO + ": water is not an enemy for me.\n");
+        this.m_coordinates.moveCoordinates(0, 5, 0);
+        Manager.writeMessage(INFO + ": water is not an enemy for me.\n");
         break;
       case ("FOG"):
-        tmp = new Coordinates(m_coordinates.getLongtitude(),
-          m_coordinates.getLatitude() + 1,
-          m_coordinates.getHeight());
-          Manager.writeMessage(INFO + ": like in Vvardenfell.\n");
+        this.m_coordinates.moveCoordinates(0, 1, 0);
+        Manager.writeMessage(INFO + ": like in Vvardenfell.\n");
         break;
       case ("SNOW"):
-        tmp = new Coordinates(m_coordinates.getLongtitude(),
-          m_coordinates.getLatitude(),
-          m_coordinates.getHeight() - 7);
-          Manager.writeMessage(INFO + ": do I look like Nord?\n");
+        this.m_coordinates.moveCoordinates(0, 0, -7);
+        Manager.writeMessage(INFO + ": do I look like Nord?\n");
         break;
       default: break;
     };
 
-    if (tmp.getHeight() <= 0) {
+    if (this.m_coordinates.getHeight() <= 0) {
       this.m_wt.unregister(this);
     }
-    
-    this.m_coordinates = tmp;
-
   }
 
   public void registerTower(WeatherTower wt) {
     this.m_wt = wt;
     this.m_wt.register(this);
   }
+  
 }

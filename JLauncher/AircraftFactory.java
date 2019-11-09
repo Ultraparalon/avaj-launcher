@@ -4,7 +4,6 @@ public abstract class AircraftFactory {
 
   public static Flyable newAircraft(String type,
   	String name, int longtitude, int latitude, int height) {
-
     Coordinates coords = new Coordinates(longtitude, latitude, height);
 
     switch (type)
@@ -15,4 +14,5 @@ public abstract class AircraftFactory {
     	default: return null;
     }
   }
+  
 }
